@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seat Selection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        .bus-layout {
+            display: grid;
+            grid-template-columns: repeat(5, 50px);
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .seat, .driver, .conductor {
+            width: 50px;
+            height: 50px;
+            background-color: lightgray;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .aisle {
+            width: 50px;
+            height: 50px;
+            visibility: hidden;
+        }
+        .selected {
+            background-color: green !important;
+            color: white;
+        }
+        .driver {
+            background-color: red;
+            color: white;
+        }
+        .conductor {
+            background-color: blue;
+            color: white;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h2>Book Seats for {{ bus.name }}</h2>
+        <p><strong>Route:</strong> {{ bus.source }} → {{ bus.destination }}</p>
+        <p><strong>Departure Time:</strong> {{ bus.time }}</p>
+        <p><strong>Ticket Price:</strong> ₹{{ bus.price }}</p>
+
+        <h4>Select Your Seat(s)</h4>
+        <div class="bus-layout">
+            <!-- Driver and Conductor -->
+            <div class="driver">D</div>
+            <div class="conductor">C</div>
+            <div class="aisle"></div>
+            <div class="aisle"></div>
+            <div class="aisle"></div>
+            
+            {% for row in range(1, 11) %}  
+                <div class="seat" onclick="selectSeat(this)" data-seat="{{ row * 4 - 3 }}">{{ row * 4 - 3 }}</div>
+                <div class="seat" onclick="selectSeat(this)" data-seat="{{ row * 4 - 2 }}">{{ row * 4 - 2 }}</div>
+                <div class="aisle"></div>
+                <div class="seat" onclick="selectSeat(this)" data-seat="{{ row * 4 - 1 }}">{{ row * 4 - 1 }}</div>
+                <div class="seat" onclick="selectSeat(this)" data-seat="{{ row * 4 }}">{{ row * 4 }}</div>
+            {% endfor %}
+        </div>
+
+        <!-- Seat Booking Form -->
+        <form action="{{ url_for('confirm_booking') }}" method="POST">
+            <input type="hidden" name="bus_id" value="{{ bus._id }}">
+            <button type="submit">Confirm Booking</button>
+        </form>
+        
+    </div>
+
+    <script>
+        function selectSeat(element) {
+            element.classList.toggle('selected');
+            updateSelectedSeats();
+        }
+
+        function updateSelectedSeats() {
+            let selectedSeats = [];
+            document.querySelectorAll('.seat.selected').forEach(seat => {
+                selectedSeats.push(seat.dataset.seat);
+            });
+            document.getElementById('selectedSeats').value = selectedSeats.join(',');
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

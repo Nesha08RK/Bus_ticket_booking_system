@@ -1,0 +1,89 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background: url('../images/in1.png') no-repeat center center fixed;
+    background-size: cover; /* Ensures the image covers the entire screen */
+    background-position: center;
+    background-attachment: fixed;
+    color: #fff;
+}
+
+
+/* Navigation Bar */
+.navbar {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff !important;
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff !important;
+    font-size: 1.1rem;
+    margin-right: 15px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffcc00 !important;
+}
+
+header {
+    background: rgba(99, 41, 199, 0.8); /* Dark Green */
+    padding: 20px 0; /* Reduced padding */
+    min-height: 250px; /* Set minimum height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Reduce Heading and Text Size */
+header h1 {
+    font-size: 2rem; /* Adjusted heading size */
+    font-weight: bold;
+    color: #ceccc4;
+}
+
+header p {
+    font-size: 1rem;
+    color: #f1f1f1;
+}
+
+/* Reduce Spacing for Search Form */
+header form {
+    margin-top: 10px; /* Reduce top margin */
+}
+
+/* Search Form */
+form input, form button {
+    border-radius: 5px;
+}
+
+form input {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+}
+
+form button {
+    background-color: #ffcc00;
+    color: #333;
+    font-weight: bold;
+}
+
+form button:hover {
+    background-color: #ff9900;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    header p {
+        font-size: 1rem;
+    }
+}

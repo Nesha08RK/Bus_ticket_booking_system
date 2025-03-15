@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | Bus Ticket Booking</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+</head>
+<body>
+  <div class="container">
+    <div class="form-box">
+      <h2>Sign Up</h2>
+      <form id="signup-form">
+        <div class="input-group">
+          <input type="text" id="fullName" placeholder="Full Name">
+          <p class="error" id="name-error"></p>
+        </div>
+        <div class="input-group">
+          <input type="email" id="email" placeholder="Email">
+          <p class="error" id="email-error"></p>
+        </div>
+        <div class="input-group">
+          <input type="password" id="password" placeholder="Password">
+          <p class="error" id="password-error"></p>
+        </div>
+        <div class="input-group">
+          <input type="password" id="confirm-password" placeholder="Confirm Password">
+          <p class="error" id="confirm-password-error"></p>
+        </div>
+        <button type="submit" id="signup-btn">Sign Up</button>
+      </form>
+      
+      <p>Already have an account? <a href="{{ url_for('login') }}" id="login-link">Login</a></p>
+      
+      <!-- Allow users to book without signing up -->
+      <p>Want to book a ticket without signing up? <a href="{{ url_for('book_ticket') }}" id="skip-signup-link">Proceed to Booking</a></p>
+    </div>
+  </div>
+</body>
+</html>

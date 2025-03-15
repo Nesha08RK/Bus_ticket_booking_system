@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Bus Ticket Booking</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body>
+  <div class="container">
+    <div class="form-box">
+      <h2>Login</h2>
+      <form id="login-form">
+        <div class="input-group">
+          <input type="email" id="email" placeholder="Email">
+          <p class="error" id="email-error"></p>
+        </div>
+        <div class="input-group">
+          <input type="password" id="password" placeholder="Password">
+          <p class="error" id="password-error"></p>
+        </div>
+        <button type="submit" id="login-btn">Login</button>
+      </form>
+      
+      <p>Don't have an account? <a href="{{ url_for('signup') }}" id="signup-link">Sign Up</a></p>
+    </div>
+  </div>
+</body>
+</html>
